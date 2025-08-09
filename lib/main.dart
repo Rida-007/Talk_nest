@@ -11,7 +11,7 @@ class FakeMessagingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Clickbait Messenger 🤡',
+      title: 'TalkNest',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.teal),
       home: const LoginScreen(),
