@@ -48,13 +48,13 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
+![https://drive.google.com/file/d/1cQFt1dhaCYgDkM97eJlOhyJVWimy-7kS/view?usp=drivesdk](Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name)
+![https://drive.google.com/file/d/1eptAIH2gUc7WgzbTJFYTrYhLTMTizWCy/view?usp=drivesdk](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
 
-![Screenshot3](Add screenshot 3 here with proper name)
+![https://drive.google.com/file/d/1l7F1Cr58uQ5X-8BZVXPYl06NDXwyjuIw/view?usp=drivesdk](Add screenshot 3 here with proper name)
 *Add caption explaining what this shows*
 
 # Diagrams
@@ -82,7 +82,7 @@ For Hardware:
 
 ### Project Demo
 # Video
-https://drive.google.com/file/d/10ws5d5zyJgRAlZ87BJVFJe-rNVJyjWQO/view?usp=drivesdk
+https://drive.google.com/file/d/1irZa50cDkrfHq_bTrazFG_CH-d4KAWem/view?usp=drivesdk
 *Explain what the video demonstrates*
 
 # Additional Demos
