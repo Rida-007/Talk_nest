@@ -171,3 +171,71 @@ class ContactsScreen extends StatelessWidget {
     );
   }
 }
+
+class FakeChatUI extends StatefulWidget {
+  final String contactName;
+  final String username;
+
+  const FakeChatUI({
+    super.key,
+    required this.contactName,
+    required this.username,
+  });
+
+  @override
+  _FakeChatUIState createState() => _FakeChatUIState();
+}
+
+class _FakeChatUIState extends State<FakeChatUI> {
+  final TextEditingController _controller = TextEditingController();
+  List<Map<String, String>> messages = [];
+  bool isTyping = false;
+  String lastMessage = "";
+  String currentTheme = "Light";
+
+  List<String> funnyReplies = [
+    "I just opened a portal to another tab 🌀",
+    "Sorry, I'm updating my blender firmware.",
+    "I sneezed and my phone flew away.",
+    "I forgot how to type.",
+    "I'm buffering…",
+    "Hold on, I'm talking to a potato.",
+    "I can’t reply, my keyboard is shy.",
+    "Currently decoding your message with ancient runes.",
+    "Oops, my thoughts got stuck in traffic.",
+    "Message received by my third eye 👁️",
+    "I tried to respond, but the vibe wasn’t right.",
+    "The message was too emotionally charged for me.",
+    "I replied in my mind. Hope you heard it.",
+    "I sent the reply to the cloud… literally.",
+    "Sorry, I’m in airplane mode spiritually.",
+    "This conversation is being live-streamed to aliens 👽",
+    "Can’t respond, I’m chasing my dreams (literally).",
+    "I forgot my reply inside the fridge.",
+    "I trained an AI to answer but it ghosted me.",
+    "Your message got converted to binary and lost.",
+    "I’m charging my sarcasm before replying.",
+    "Oops! Thought I was talking to my toaster.",
+    "I replied but my pet rock ate it.",
+    "I sent your message to Google Translate → Morse → Emoji → Gone.",
+    "I got distracted counting atoms.",
+  ];
+
+  void sendMessage() {
+    String text = _controller.text.trim();
+    if (text.isEmpty) return;
+
+    setState(() {
+      lastMessage = text;
+      messages.add({"sender": widget.username, "text": text});
+      _controller.clear();
+      isTyping = true;
+    });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        isTyping = false;
+      });
+    });
+  }
+}
