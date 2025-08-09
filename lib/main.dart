@@ -237,5 +237,144 @@ class _FakeChatUIState extends State<FakeChatUI> {
         isTyping = false;
       });
     });
+
+    Future.delayed(const Duration(seconds: 4), () {
+      setState(() {
+        String randomReply =
+            funnyReplies[Random().nextInt(funnyReplies.length)];
+        messages.add({"sender": widget.contactName, "text": randomReply});
+      });
+    });
+  }
+
+  void replayLastMessage() {
+    if (lastMessage.isNotEmpty) {
+      setState(() {
+        messages.add({
+          "sender": "ReplayBot",
+          "text": "(Replaying your own msg) $lastMessage",
+        });
+      });
+    }
+  }
+
+  void switchTheme() {
+    setState(() {
+      currentTheme = currentTheme == "Light" ? "Dark" : "Light";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    bool isDark = currentTheme == "Dark";
+
+    return Scaffold(
+      backgroundColor: isDark ? Colors.black : Colors.white,
+      appBar: AppBar(
+        title: Text(widget.contactName),
+        backgroundColor: isDark ? Colors.grey[900] : Colors.deepPurple,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            tooltip: "Replay last message",
+            onPressed: replayLastMessage,
+          ),
+          IconButton(
+            icon: const Icon(Icons.color_lens),
+            tooltip: "Toggle Theme",
+            onPressed: switchTheme,
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                final msg = messages[index];
+                final isMe = msg['sender'] == widget.username;
+
+                Color bubbleColor = msg['sender'] == "system"
+                    ? Colors.orange.shade100
+                    : isMe
+                    ? (isDark ? Colors.deepPurple : Colors.deepPurple[300]!)
+                    : (isDark ? Colors.grey[800]! : Colors.grey[300]!);
+
+                return Align(
+                  alignment: isMe
+                      ? Alignment.centerRight
+                      : msg['sender'] == "system"
+                      ? Alignment.center
+                      : Alignment.centerLeft,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: bubbleColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      isMe ? msg['text']! : "${msg['sender']}: ${msg['text']}",
+                      style: TextStyle(
+                        color: isDark
+                            ? Colors.white
+                            : isMe
+                            ? Colors.white
+                            : Colors.black,
+                        fontStyle: msg['sender'] == "system"
+                            ? FontStyle.italic
+                            : FontStyle.normal,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          if (isTyping)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Typing... then vanishing...",
+                style: TextStyle(
+                  color: isDark ? Colors.white70 : Colors.black54,
+                ),
+              ),
+            ),
+          Divider(height: 1, color: isDark ? Colors.white24 : Colors.black26),
+          SafeArea(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              color: isDark ? Colors.grey[900] : Colors.grey.shade200,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: const InputDecoration(
+                        hintText: "Type something dramatic...",
+                        border: InputBorder.none,
+                      ),
+                      style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.send,
+                      color: isDark ? Colors.white : Colors.deepPurple,
+                    ),
+                    onPressed: sendMessage,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
