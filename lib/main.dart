@@ -105,3 +105,69 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+class ContactsScreen extends StatelessWidget {
+  final String username;
+  ContactsScreen({super.key, required this.username});
+
+  final List<String> contacts = [
+    "Mohanlal",
+    "Mammooty",
+    "Dulqar Salman",
+    "Tovino",
+    "Prithvi Raj",
+    "Fahad Fasil",
+    "Nivin ",
+    "Shah Rukh Khan",
+    "Salman Khan",
+    "Aamir Khan",
+    "Amitabh Bachchan",
+    "Ranbir Kapoor",
+    "Deepika Padukone",
+    "Priyanka Chopra Jonas",
+    "Alia Bhatt",
+    "Hrithik Roshan",
+    "Kareena Kapoor Khan",
+    "Leonardo DiCaprio",
+    "Tom Cruise",
+    "Robert Downey Jr.",
+    "Dwayne Johnson",
+    "Brad Pitt",
+    "Johnny Depp",
+    "Angelina Jolie",
+    "Meryl Streep",
+    "Scarlett Johansson",
+    "Jennifer Lawrence",
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Contacts")),
+      body: ListView.builder(
+        itemCount: contacts.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: const CircleAvatar(
+              backgroundColor: Colors.teal,
+              child: Icon(Icons.person, color: Colors.white),
+            ),
+            title: Text(contacts[index]),
+            subtitle: const Text("Tap to start chatting"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FakeChatUI(
+                    contactName: contacts[index],
+                    username: username,
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
