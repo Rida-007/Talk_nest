@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Icon(Icons.message, size: 80, color: Colors.teal),
               const SizedBox(height: 16),
               const Text(
-                "Clickbait Messenger 🤡",
+                "Talk Nest",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 40),
